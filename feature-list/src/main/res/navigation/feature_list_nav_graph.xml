@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/feature_list_nav_graph"
+    android:label="featureListGraph"
+    app:startDestination="@id/featureListFragment">
+
+    <fragment
+        android:id="@+id/featureListFragment"
+        android:name="com.test.feature_list.FeatureListFragment"
+        android:label="FeatureListFragment" >
+
+        <deepLink app:uri="hiltdemo://feature_list"/>
+    </fragment>
+</navigation>

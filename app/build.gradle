@@ -1,0 +1,123 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion "29.0.2"
+
+    defaultConfig {
+        applicationId rootProject.ext.appId
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        vectorDrawables.useSupportLibrary = true
+        manifestPlaceholders = [file_provider: rootProject.ext.appId]
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        debug {
+            //Currently debug and release id's are same
+            //TODO: move credentials to a properties file
+            buildConfigField('String', 'COMET_CHAT_ID', '"23218ab0eaad230"')
+            buildConfigField('String', 'COMET_CHAT_AUTH_KEY', '"9a461d27f3592fa1d6fd9399f98f5ad91e9dbbf2"')
+            buildConfigField('String', 'JM_ENDPOINT', '"https://staging.jumpingminds.in/"')
+        }
+        release {
+            buildConfigField('String', 'COMET_CHAT_ID', '"23218ab0eaad230"')
+            buildConfigField('String', 'COMET_CHAT_AUTH_KEY', '"9a461d27f3592fa1d6fd9399f98f5ad91e9dbbf2"')
+            buildConfigField('String', 'JM_ENDPOINT', '"https://jumpingminds.in/"')
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    sourceSets {
+        // Allow Kotlin in unit tests
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
+        exclude("META-INF/*.kotlin_module")
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
+    coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:${versions.coreLibraryDesugaring}"
+
+    implementation project(':feature-list')
+
+    implementation deps.androidx.appCompat
+    implementation deps.androidx.ktxCore
+    implementation deps.androidx.constraintLayout
+    implementation deps.androidx.design
+    implementation deps.androidx.recyclerView
+    implementation deps.androidx.fragment
+    implementation deps.androidx.navigation.fragment
+    implementation deps.androidx.navigation.ui
+    testImplementation deps.androidx.test.core
+
+    implementation deps.arch.lifecycle.common
+    implementation deps.arch.lifecycle.extensions
+    implementation deps.arch.lifecycle.viewmodel
+    implementation deps.arch.lifecycle.livedata
+
+    implementation deps.hilt.base
+    kapt deps.hilt.compiler
+    implementation deps.hilt.androidxVm
+    kapt deps.hilt.androidxCompiler
+
+    implementation deps.dagger.library
+    implementation deps.dagger.android.library
+    implementation deps.dagger.android.support
+    kapt deps.dagger.processor
+    kapt deps.dagger.android.processor
+
+    implementation deps.coroutines.core
+    implementation deps.coroutines.android
+    testImplementation deps.coroutines.test
+
+    testImplementation deps.junit
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
+
+kapt {
+    useBuildCache = true
+}

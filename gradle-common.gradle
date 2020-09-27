@@ -1,0 +1,79 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        vectorDrawables.useSupportLibrary = true
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    sourceSets {
+        // Allow Kotlin in unit tests
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+}
+
+dependencies {
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
+
+    implementation deps.dagger.library
+    implementation deps.dagger.android.library
+    implementation deps.dagger.android.support
+    kapt deps.dagger.processor
+    kapt deps.dagger.android.processor
+
+    implementation deps.hilt.base
+    kapt deps.hilt.compiler
+    implementation deps.hilt.androidxVm
+    kapt deps.hilt.androidxCompiler
+
+    implementation deps.androidx.appCompat
+    implementation deps.androidx.ktxCore
+    implementation deps.androidx.constraintLayout
+    implementation deps.androidx.design
+    implementation deps.androidx.recyclerView
+    implementation deps.androidx.fragment
+    implementation deps.androidx.navigation.fragment
+    implementation deps.androidx.navigation.ui
+    testImplementation deps.androidx.test.core
+
+    implementation deps.arch.lifecycle.common
+    implementation deps.arch.lifecycle.extensions
+    implementation deps.arch.lifecycle.viewmodel
+    implementation deps.arch.lifecycle.livedata
+
+    implementation deps.coroutines.core
+    implementation deps.coroutines.android
+
+    implementation deps.gson
+}
