@@ -4,7 +4,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 
-@Module
+@Module(includes = [DataModule.Provider::class])
 abstract class DataModule {
 
     @Binds

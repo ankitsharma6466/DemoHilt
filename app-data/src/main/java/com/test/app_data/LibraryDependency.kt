@@ -4,12 +4,8 @@ class LibraryDependency(
     private val otherDataDep: OtherDataDep
 ) {
 
-    fun getLibraryDataA() {
-        "From Library : ${otherDataDep.getOtherDataA()}"
-    }
+    fun getLibraryDataA() = "From Library : ${otherDataDep.getOtherDataA()}"
 
-    fun getLibraryDataB() {
-        "From Library : ${otherDataDep.getOtherDataB()}"
-    }
+    fun getLibraryDataB() = "From Library : ${otherDataDep.getOtherDataB()}"
 
 }
