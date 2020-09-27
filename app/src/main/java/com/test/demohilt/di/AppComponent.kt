@@ -1,6 +1,5 @@
 package com.test.demohilt.di
 
-import com.ankitsharma.punkbeers.di.AppModule
 import com.test.demohilt.HiltDemoApplication
 import dagger.Component
 import dagger.android.AndroidInjector
