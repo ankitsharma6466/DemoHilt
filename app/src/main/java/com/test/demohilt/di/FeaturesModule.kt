@@ -1,12 +1,16 @@
 package com.test.demohilt.di
 
+import com.test.app_data.DataModule
 import com.test.demohilt.SplashFragment
+import com.test.feature_details.FeatureDetailsModule
 import com.test.feature_list.FeatureListModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module(includes = [
-    FeatureListModule::class
+    DataModule::class,
+    FeatureListModule::class,
+    FeatureDetailsModule::class
 ])
 abstract class FeaturesModule {
 

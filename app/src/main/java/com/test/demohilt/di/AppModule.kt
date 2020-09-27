@@ -3,6 +3,7 @@ package com.test.demohilt.di
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.test.app_data.DataModule
 import com.test.core.ActivityContext
 import com.test.core.ApplicationContext
 import com.test.core.ViewModelFactory
@@ -13,7 +14,9 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.Multibinds
 
-@Module()
+@Module(includes = [
+    DataModule::class
+])
 abstract class AppModule {
 
     @ContributesAndroidInjector

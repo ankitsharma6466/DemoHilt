@@ -84,6 +84,7 @@ dependencies {
     implementation project(':feature-list')
     implementation project(':feature-details')
     implementation project(':core')
+    implementation project(':app-data')
 
     implementation deps.androidx.appCompat
     implementation deps.androidx.ktxCore
