@@ -52,10 +52,10 @@ dependencies {
     kapt deps.dagger.processor
     kapt deps.dagger.android.processor
 
-    implementation deps.hilt.base
-    kapt deps.hilt.compiler
-    implementation deps.hilt.androidxVm
-    kapt deps.hilt.androidxCompiler
+//    implementation deps.hilt.base
+//    kapt deps.hilt.compiler
+//    implementation deps.hilt.androidxVm
+//    kapt deps.hilt.androidxCompiler
 
     implementation deps.androidx.appCompat
     implementation deps.androidx.ktxCore

@@ -1,3 +1,5 @@
+include ':core'
 include ':feature-list'
+include ':feature-details'
 include ':app'
 rootProject.name = "DemoHilt"

@@ -4,7 +4,7 @@ plugins {
     id 'kotlin-android-extensions'
     id 'androidx.navigation.safeargs.kotlin'
     id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
+//    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -82,6 +82,8 @@ dependencies {
     coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:${versions.coreLibraryDesugaring}"
 
     implementation project(':feature-list')
+    implementation project(':feature-details')
+    implementation project(':core')
 
     implementation deps.androidx.appCompat
     implementation deps.androidx.ktxCore
@@ -98,10 +100,10 @@ dependencies {
     implementation deps.arch.lifecycle.viewmodel
     implementation deps.arch.lifecycle.livedata
 
-    implementation deps.hilt.base
-    kapt deps.hilt.compiler
-    implementation deps.hilt.androidxVm
-    kapt deps.hilt.androidxCompiler
+//    implementation deps.hilt.base
+//    kapt deps.hilt.compiler
+//    implementation deps.hilt.androidxVm
+//    kapt deps.hilt.androidxCompiler
 
     implementation deps.dagger.library
     implementation deps.dagger.android.library
