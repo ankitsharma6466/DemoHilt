@@ -15,6 +15,7 @@ import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.Multibinds
 
 @Module(includes = [
+    FeaturesModule::class,
     DataModule::class
 ])
 abstract class AppModule {
